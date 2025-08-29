@@ -22,7 +22,8 @@ dotenv.config();
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         sessionToken: process.env.AWS_SESSION_TOKEN
-    }});
+    }
+  });
   
   // Step 2: Specify which model to use:
   // Available Amazon Nova models and their characteristics:
@@ -66,6 +67,8 @@ dotenv.config();
   try {
     const response = await client.send(new ConverseCommand(request));
     console.log(response.output.message.content[0].text);
+    console.log(response.metrics);
+    console.log(response.usage);
   } catch (error) {
     console.error(`ERROR: Can't invoke '${modelId}'. Reason: ${error.message}`);
     throw error;
